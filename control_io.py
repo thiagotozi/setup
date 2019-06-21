@@ -17,9 +17,11 @@ def load_current_plc_state():
     url = 'http://{ip}/rest/all'
     url = url.format(ip=UNIPI_IP)
     response = requests.get(url)
+
     if response.status_code != 200:
         log.debug('unipi could not be found! wrong IP / OFF')
         sys.exit()
+
     all_values = response.json()
     return all_values
 
@@ -31,6 +33,8 @@ def find_io_by_alias(alias):
     Un the unipu / index.html page there is a configuration tab
     where you can
     """
+    assert washing_state.CURRENT_PLC_STATE
+
     for unipi_io in washing_state.CURRENT_PLC_STATE:
         a = unipi_io.get('alias')
         if a:
@@ -59,6 +63,11 @@ def _set_value(io, value):
 
     if response.status_code != 200:
         log.debug('io state change failed!! %s %s', value, io)
+        sys.exit(1)
+
+    result = response.json()
+    if not result['success']:
+        log.debug('unpi fails to act !! %s %s', value, io)
         sys.exit(1)
 
 

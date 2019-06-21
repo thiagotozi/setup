@@ -1,0 +1,899 @@
+[
+    {
+        "circuit": "3_02",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "3_04",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "3_05",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "3_03",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "alias": "al_v1_alarm",
+        "circuit": "1_01",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "alias": "al_v2_alarm",
+        "circuit": "1_02",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "alias": "al_brine_level",
+        "circuit": "1_03",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "alias": "al_psu_alarm",
+        "circuit": "1_04",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "3_01",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "2_05",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "2_04",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "2_06",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "2_01",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "2_03",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "2_02",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "circuit": "3_06",
+        "counter": 0,
+        "counter_mode": "Enabled",
+        "counter_modes": [
+            "Enabled",
+            "Disabled"
+        ],
+        "debounce": 50,
+        "dev": "input",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "DirectSwitch"
+        ],
+        "value": 0
+    },
+    {
+        "alias": "al_P2_Direction",
+        "circuit": "3_02",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_p_brine_level",
+        "circuit": "3_04",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "circuit": "3_05",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "circuit": "3_03",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_v1",
+        "circuit": "1_01",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "PWM"
+        ],
+        "pending": false,
+        "relay_type": "digital",
+        "value": 0
+    },
+    {
+        "alias": "al_v1-1",
+        "circuit": "1_02",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "PWM"
+        ],
+        "pending": false,
+        "relay_type": "digital",
+        "value": 0
+    },
+    {
+        "alias": "al_v2",
+        "circuit": "1_03",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "PWM"
+        ],
+        "pending": false,
+        "relay_type": "digital",
+        "value": 0
+    },
+    {
+        "alias": "al_v2-1",
+        "circuit": "1_04",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple",
+            "PWM"
+        ],
+        "pending": false,
+        "relay_type": "digital",
+        "value": 0
+    },
+    {
+        "alias": "al_AIR_IN",
+        "circuit": "2_05",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_AIR_OUT",
+        "circuit": "2_04",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_p2",
+        "circuit": "3_01",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_p1",
+        "circuit": "2_01",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 1
+    },
+    {
+        "circuit": "2_03",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_p1_direction",
+        "circuit": "2_02",
+        "dev": "relay",
+        "glob_dev_id": 1,
+        "mode": "Simple",
+        "modes": [
+            "Simple"
+        ],
+        "pending": false,
+        "relay_type": "physical",
+        "value": 0
+    },
+    {
+        "alias": "al_TEST_VOLTAGE_INPUT",
+        "circuit": "3_04",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.0003083001356571913
+    },
+    {
+        "circuit": "3_03",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.0010810709791257977
+    },
+    {
+        "circuit": "1_01",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "10.0"
+        ],
+        "unit": "V",
+        "value": 0.013045285837648605
+    },
+    {
+        "circuit": "3_02",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.0015901332953944802
+    },
+    {
+        "circuit": "2_04",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.00038352914270944893
+    },
+    {
+        "circuit": "3_01",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.002419837284833193
+    },
+    {
+        "alias": "al_Current_Voltage",
+        "circuit": "2_01",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.002562931040301919
+    },
+    {
+        "circuit": "2_03",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.0011910805478692055
+    },
+    {
+        "circuit": "2_02",
+        "dev": "ai",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "range": "10.0",
+        "range_modes": [
+            "0.0",
+            "2.5",
+            "10.0"
+        ],
+        "unit": "V",
+        "value": -0.0006561573245562613
+    },
+    {
+        "circuit": "3_04",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.4
+    },
+    {
+        "circuit": "3_03",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "alias": "al_p_brine_level_speed",
+        "circuit": "1_01",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Current",
+        "modes": [
+            "Voltage",
+            "Current",
+            "Resistance"
+        ],
+        "unit": "mA",
+        "value": 0.0
+    },
+    {
+        "circuit": "3_02",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "alias": "al_PSU",
+        "circuit": "2_04",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "circuit": "3_01",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "circuit": "2_01",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "circuit": "2_03",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "circuit": "2_02",
+        "dev": "ao",
+        "glob_dev_id": 1,
+        "mode": "Voltage",
+        "modes": [
+            "Voltage"
+        ],
+        "unit": "V",
+        "value": 0.0
+    },
+    {
+        "alias": "al_one",
+        "circuit": "1_01",
+        "dev": "led",
+        "glob_dev_id": 1,
+        "value": 0
+    },
+    {
+        "alias": "al_two",
+        "circuit": "1_02",
+        "dev": "led",
+        "glob_dev_id": 1,
+        "value": 0
+    },
+    {
+        "alias": "al_three",
+        "circuit": "1_03",
+        "dev": "led",
+        "glob_dev_id": 1,
+        "value": 0
+    },
+    {
+        "alias": "al_four",
+        "circuit": "1_04",
+        "dev": "led",
+        "glob_dev_id": 1,
+        "value": 0
+    },
+    {
+        "circuit": "1_01",
+        "dev": "wd",
+        "glob_dev_id": 1,
+        "nv_save": 1,
+        "timeout": 5000,
+        "value": 0,
+        "was_wd_reset": 0
+    },
+    {
+        "circuit": "3_01",
+        "dev": "wd",
+        "glob_dev_id": 1,
+        "nv_save": 1,
+        "timeout": 5000,
+        "value": 0,
+        "was_wd_reset": 0
+    },
+    {
+        "circuit": "2_01",
+        "dev": "wd",
+        "glob_dev_id": 1,
+        "nv_save": 1,
+        "timeout": 5000,
+        "value": 0,
+        "was_wd_reset": 0
+    },
+    {
+        "board_count": 3,
+        "circuit": "1",
+        "dev": "neuron",
+        "glob_dev_id": 1,
+        "last_comm": 0.0073699951171875,
+        "model": "L513",
+        "sn": 23,
+        "ver2": "1.0"
+    },
+    {
+        "circuit": "1_01",
+        "conf_value": 14,
+        "dev": "uart",
+        "glob_dev_id": 1,
+        "parity_mode": "None",
+        "parity_modes": [
+            "None",
+            "Odd",
+            "Even"
+        ],
+        "speed_mode": "19200bps",
+        "speed_modes": [
+            "2400bps",
+            "4800bps",
+            "9600bps",
+            "19200bps",
+            "38400bps",
+            "57600bps",
+            "115200bps"
+        ],
+        "stopb_mode": "One",
+        "stopb_modes": [
+            "One",
+            "Two"
+        ],
+        "sw_address": 0
+    },
+    {
+        "circuit": "3_01",
+        "conf_value": 14,
+        "dev": "uart",
+        "glob_dev_id": 1,
+        "parity_mode": "None",
+        "parity_modes": [
+            "None",
+            "Odd",
+            "Even"
+        ],
+        "speed_mode": "19200bps",
+        "speed_modes": [
+            "2400bps",
+            "4800bps",
+            "9600bps",
+            "19200bps",
+            "38400bps",
+            "57600bps",
+            "115200bps"
+        ],
+        "stopb_mode": "One",
+        "stopb_modes": [
+            "One",
+            "Two"
+        ],
+        "sw_address": 0
+    },
+    {
+        "circuit": "2_01",
+        "conf_value": 14,
+        "dev": "uart",
+        "glob_dev_id": 1,
+        "parity_mode": "None",
+        "parity_modes": [
+            "None",
+            "Odd",
+            "Even"
+        ],
+        "speed_mode": "19200bps",
+        "speed_modes": [
+            "2400bps",
+            "4800bps",
+            "9600bps",
+            "19200bps",
+            "38400bps",
+            "57600bps",
+            "115200bps"
+        ],
+        "stopb_mode": "One",
+        "stopb_modes": [
+            "One",
+            "Two"
+        ],
+        "sw_address": 0
+    }
+]

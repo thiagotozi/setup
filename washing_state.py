@@ -1,5 +1,4 @@
 
-LOOP_PERIOD_SECONDS = 1
 
 UNIPI_IP = "192.168.0.127"
 
@@ -16,14 +15,15 @@ CURRENT_PLC_STATE = {}
 voltage_history = []
 brine_levels = []
 
-TESTING = False
 
 settings = {
-    'voltage_history_seconds': 300,
-
+    'voltage_history': 300,
+    'TESTING': False,
+    'LOOP_PERIOD_SECONDS': 1,
 }
 
 
-if TESTING:
+if settings['TESTING']:
     # test settings.
-    settings['voltage_history_seconds'] = 10
+    settings['voltage_history'] = 10
+    settings['LOOP_PERIOD_SECONDS'] = 0.1

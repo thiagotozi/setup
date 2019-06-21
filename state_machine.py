@@ -93,6 +93,9 @@ def interval_check():
 
     log.debug('INTERVAL: %s', interval)
 
+    if washing_state.settings['TESTING']:
+        interval = interval / 10
+
     if STATES[state]['interval'] > interval:
         return False
 
@@ -105,7 +108,7 @@ def check_brine_level():
 
     always returns True.
     """
-    value = control_io.get('brine level')
+    value = control_io.get('brine_level')
     bl = washing_state.brine_levels
 
     bl.append(value)
@@ -115,12 +118,12 @@ def check_brine_level():
 
     if sum(bl) > 10:
         # stop
-        control_io.set('p brine level', 0)
-        control_io.set('p brine level speed', 0)
+        control_io.set('p_brine_level', 0)
+        control_io.set('p_brine_level_speed', 0)
     else:
         # refill
-        control_io.set('p brine level', 0)
-        control_io.set('p brine level speed', 10)
+        control_io.set('p_brine_level', 0)
+        control_io.set('p_brine_level_speed', 10)
 
     return True
 
@@ -180,7 +183,7 @@ STATES = {
     "HappyFlow": {
         "expected": {
             "p1": 1,
-            "p1 direction": 0,
+            "p1_direction": 0,
             "v1": 0,
             "v1-1": 0,
             "v2": 0,

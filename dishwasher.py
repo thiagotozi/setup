@@ -17,8 +17,6 @@ import time
 import logging
 import washing_state
 
-from washing_state import LOOP_PERIOD_SECONDS
-
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 logging.basicConfig(level=logging.DEBUG)
@@ -33,7 +31,7 @@ def set_lamps(one, two, three, four):
     control_io.set('four', four)
 
 
-def run_forever():
+def run_forever(testloops=1):
     """
     Main Loop. Load plc state, execute state machine
     plan, exit on any deviation / error.
@@ -41,7 +39,9 @@ def run_forever():
     leds = [0, 0, 0, 0]
     last_state = None
 
-    while True:
+    LOOP_PERIOD = washing_state.settings['LOOP_PERIOD_SECONDS']
+
+    while testloops:
 
         washing_state.CURRENT_PLC_STATE = control_io.load_current_plc_state()
         state = state_machine.match_current_state()
@@ -67,9 +67,14 @@ def run_forever():
             print(msg)
             sys.exit(1)
 
-        time.sleep(LOOP_PERIOD_SECONDS)
+        time.sleep(LOOP_PERIOD)
         leds = [1 - x for x in leds]  # noqa
         set_lamps(*leds)
+
+        if washing_state.settings['TESTING']:
+            testloops -= 1
+
+    return last_state
 
 
 if __name__ == '__main__':
