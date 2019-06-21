@@ -31,7 +31,42 @@ def set_lamps(one, two, three, four):
     control_io.set('four', four)
 
 
-def run_forever(testloops=1):
+def run_state_machine(last_state):
+    """Run a single iteration of statemachine.
+
+    - load current plc io status.
+    - decide whih state we are in.
+    - log changes
+    - apply actions / checks for current state.
+    """
+    washing_state.CURRENT_PLC_STATE = control_io.load_current_plc_state()
+    state = state_machine.match_current_state()
+
+    # log.info('CURRENT %s', state)
+
+    if state != last_state:
+        log.info('STATE: %s', state)
+        last_state = state
+        washing_state.current['interval'] = 0
+        washing_state.current['name'] = state
+    else:
+        washing_state.current['interval'] += 1
+
+    if state:
+        state_machine.action()
+    else:
+        msg = (
+            "UNIPI is in a unknown STATE. please manualy put it",
+            "in the desired state using the /index.html page"
+        )
+        log.error(msg)
+        print(msg)
+        sys.exit(1)
+
+    return state
+
+
+def run_forever():
     """
     Main Loop. Load plc state, execute state machine
     plan, exit on any deviation / error.
@@ -41,40 +76,13 @@ def run_forever(testloops=1):
 
     LOOP_PERIOD = washing_state.settings['LOOP_PERIOD_SECONDS']
 
-    while testloops:
-
-        washing_state.CURRENT_PLC_STATE = control_io.load_current_plc_state()
-        state = state_machine.match_current_state()
-
-        log.info('CURRENT %s', state)
-
-        if state != last_state:
-            log.info('STATE: %s', state)
-            last_state = state
-            washing_state.current['interval'] = 0
-            washing_state.current['name'] = state
-        else:
-            washing_state.current['interval'] += 1
-
-        if state:
-            state_machine.action()
-        else:
-            msg = (
-                "UNIPI is in a unknown STATE. please manualy put it",
-                "in the desired state using the /index.html page"
-            )
-            log.error(msg)
-            print(msg)
-            sys.exit(1)
-
+    while True:
+        new_state = run_state_machine(last_state)
+        last_state = new_state
+        # waiting time before continuing.
         time.sleep(LOOP_PERIOD)
         leds = [1 - x for x in leds]  # noqa
         set_lamps(*leds)
-
-        if washing_state.settings['TESTING']:
-            testloops -= 1
-
-    return last_state
 
 
 if __name__ == '__main__':

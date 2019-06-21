@@ -315,7 +315,7 @@
         ],
         "pending": false,
         "relay_type": "physical",
-        "value": 0
+        "value": 1
     },
     {
         "circuit": "3_05",
@@ -587,7 +587,7 @@
         "value": -0.002419837284833193
     },
     {
-        "alias": "al_Current_Voltage",
+        "alias": "al_measured_stack_voltage",
         "circuit": "2_01",
         "dev": "ai",
         "glob_dev_id": 1,
@@ -604,7 +604,7 @@
             "10.0"
         ],
         "unit": "V",
-        "value": -0.002562931040301919
+        "value": 6
     },
     {
         "circuit": "2_03",

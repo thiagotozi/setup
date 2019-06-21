@@ -30,12 +30,17 @@ def find_io_by_alias(alias):
     """
     Our program works with alias
 
-    Un the unipu / index.html page there is a configuration tab
+    Un the unipi / index.html page there is a configuration tab
     where you can
     """
     assert washing_state.CURRENT_PLC_STATE
 
     for unipi_io in washing_state.CURRENT_PLC_STATE:
+
+        if not type(unipi_io) == dict:
+            log.error('WTF %S', unipi_io)
+            sys.exit(1)
+
         a = unipi_io.get('alias')
         if a:
             if a == 'al_%s' % alias:
@@ -65,8 +70,8 @@ def _set_value(io, value):
         log.debug('io state change failed!! %s %s', value, io)
         sys.exit(1)
 
-    result = response.json()
-    if not result['success']:
+    result = response.json().get('result')
+    if not result and not result['success']:
         log.debug('unpi fails to act !! %s %s', value, io)
         sys.exit(1)
 

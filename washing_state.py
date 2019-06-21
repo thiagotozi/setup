@@ -16,14 +16,22 @@ voltage_history = []
 brine_levels = []
 
 
+def reset():
+    voltage_history.clear()
+    brine_levels.clear()
+
+
 settings = {
     'voltage_history': 300,
     'TESTING': False,
     'LOOP_PERIOD_SECONDS': 1,
+    'TRIGGER_SLOPE': 0.0003,
+    # Safe voltage range for stack.
+    'SAFE_VOLTAGE_RANGE': [6, 9]
 }
 
 
 if settings['TESTING']:
     # test settings.
-    settings['voltage_history'] = 10
     settings['LOOP_PERIOD_SECONDS'] = 0.1
+    # settings['voltage_history'] = 0.1

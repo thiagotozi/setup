@@ -5,20 +5,13 @@ import washing_state
 import control_io
 import logging
 # import time
+from washing_state import settings
 
 log = logging.getLogger(__name__)
 
 
 def brine_interval_check():
     pass
-
-
-# def rate_of_change():
-#     v_hist = washing_state.voltage_history
-#     voltages = zip(v_hist[1::2], v_hist[0::2])
-#     delta = [x - y for x, y in voltages]
-#     avg_delta = sum(delta) / len(delta)
-#     return avg_delta
 
 
 def least_square_slope(v_hist):
@@ -62,36 +55,48 @@ def voltage_check():
     We take the average of the delta over a period of time.
     """
     # add_current voltage.
+    v = control_io.get('measured_stack_voltage')
     voltage_history = washing_state.voltage_history
-    hist_seconds = washing_state.settings['voltage_history']
+    voltage_history.append(v)
+
+    hist_seconds = settings['voltage_history']
 
     if len(voltage_history) < hist_seconds:
         # not enough data to do something.
-        return
+        return False
 
     avg_voltage = sum(voltage_history) / len(voltage_history)
 
-    if avg_voltage < 6.0:
+    min_voltage = settings['SAFE_VOLTAGE_RANGE'][0]
+    if avg_voltage < min_voltage:
         # n0 action needed.
         # start cleaning.
         return False
 
+    max_voltage = settings['SAFE_VOLTAGE_RANGE'][1]
+    if avg_voltage > max_voltage:
+        # way to high voltage.
+        # clean the brine!
+        return True
+
     slope = least_square_slope(washing_state.voltage_history)
 
-    log.debug("AVG DELTA VOLTAGE %s", avg_voltage)
+    log.debug("AVG DELTA VOLTAGE %s SLOPE %s", avg_voltage, slope)
+
+    if len(voltage_history) > hist_seconds:
+        voltage_history.pop(0)
 
     if slope > 0.0003:
         return True
 
-    if len(voltage_history) > 300:
-        voltage_history.pop(0)
+    return False
 
 
 def interval_check():
     interval = washing_state.current['interval']
     state = washing_state.current['name']
 
-    log.debug('INTERVAL: %s', interval)
+    # log.debug('INTERVAL: %s', interval)
 
     if washing_state.settings['TESTING']:
         interval = interval / 10
@@ -112,6 +117,9 @@ def check_brine_level():
     bl = washing_state.brine_levels
 
     bl.append(value)
+
+    if len(bl) < 10:
+        return
 
     if len(bl) > 10:
         bl.pop(0)
@@ -143,6 +151,8 @@ def match_current_state():
     """
     for state in STATES.keys():
         possible_io_state = STATES[state]['expected']
+        if not possible_io_state:
+            log.error('NOTHING IN EXPECTED', state)
         if match_io(possible_io_state):
             log.debug('BINGO matched %s', state)
             return state
@@ -215,6 +225,7 @@ STATES = {
     },
 
     "SaveTheBrine": {
+        "expected": {},
         "state": {
 
         },
@@ -226,6 +237,7 @@ STATES = {
     },
 
     "FlushWithAirBrine": {
+        "expected": {},
         "state": {
 
         },
@@ -238,6 +250,7 @@ STATES = {
     },
 
     "LoadTheSoap": {
+        "expected": {},
         "state": {
 
         },
@@ -251,6 +264,7 @@ STATES = {
 
 
     "FlushWithAirSoap": {
+        "expected": {},
         "state": {
 
         },
@@ -263,6 +277,7 @@ STATES = {
     },
 
     "LoadTheBrine": {
+        "expected": {},
         "state": {
 
         },
@@ -275,6 +290,7 @@ STATES = {
     },
 
     "GoToHappyFlow": {
+        "expected": {},
         "state": {
 
         },
