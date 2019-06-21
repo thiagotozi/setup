@@ -25,10 +25,11 @@ log = logging.getLogger(__name__)
 
 
 def set_lamps(one, two, three, four):
-    # set_io('one', one)
-    control_io.set('two', two)
-    control_io.set('three', three)
-    control_io.set('four', four)
+    set_io('one', one)
+
+    # control_io.set('two', two)
+    # control_io.set('three', three)
+    # control_io.set('four', four)
 
 
 def run_state_machine(last_state):

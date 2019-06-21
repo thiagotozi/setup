@@ -9,6 +9,8 @@ from unittest import mock
 #
 import dishwasher
 
+import state_machine
+
 from state_machine import least_square_slope
 from state_machine import voltage_check
 
@@ -229,7 +231,35 @@ class TestWasMachine(unittest.TestCase):
 
         washing_state.reset()
 
-        # def test_washing_procedure(self, get_mock):
+    @mock.patch("requests.get")
+    @mock.patch("requests.post")
+    def test_washing_procedure(self, post_mock, get_mock):
+
+        unipi = GetResponse()
+        unipost = PostResponse()
+        unipost._response_data = default_io_ok
+
+        post_mock.return_value = unipost
+        get_mock.return_value = unipi
+        # load default fixture. io / unipi begin state.
+        unipi.load_fixture()
+        unipi.set_post_mock(post_mock)
+
+        state_machine.change_to('StartCleaning')
+        unipi.handle_commands()
+        last_state = dishwasher.run_state_machine('HappyFlow')
+        assert last_state == 'StartCleaning'
+
+        # more then enough steps to handle all intervals.
+        for step in range(1000):
+            last_state = dishwasher.run_state_machine(last_state)
+            unipi.handle_commands()
+
+            if last_state == 'HappyFlow':
+                break
+
+        assert last_state == 'HappyFlow'
+
     #    """
     #    test trigering of happy flow.
     #    """

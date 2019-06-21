@@ -27,11 +27,14 @@ settings = {
     'LOOP_PERIOD_SECONDS': 1,
     'TRIGGER_SLOPE': 0.0003,
     # Safe voltage range for stack.
-    'SAFE_VOLTAGE_RANGE': [6, 9]
+    'SAFE_VOLTAGE_RANGE': [6, 9],
+    'WAIT_TIME_SLOW_VALVE': 10
 }
 
 
 if settings['TESTING']:
     # test settings.
     settings['LOOP_PERIOD_SECONDS'] = 0.1
+    settings['WAIT_TIME_SLOW_VALVE'] = 0.01
+
     # settings['voltage_history'] = 0.1

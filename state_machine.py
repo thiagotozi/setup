@@ -96,15 +96,23 @@ def interval_check():
     interval = washing_state.current['interval']
     state = washing_state.current['name']
 
-    # log.debug('INTERVAL: %s', interval)
+    log.debug('INTERVAL: %s', interval)
+
+    wait_interval = STATES[state]['interval']
 
     if washing_state.settings['TESTING']:
-        interval = interval / 10
+        wait_interval = wait_interval / 10
 
-    if STATES[state]['interval'] > interval:
+    if wait_interval > interval:
         return False
 
     return True
+
+
+def check_brine_level_safe():
+    if settings['TESTING']:
+        control_io.set('brine_level', 1)
+    return control_io.get('brine_level')
 
 
 def check_brine_level():
@@ -126,11 +134,9 @@ def check_brine_level():
 
     if sum(bl) > 10:
         # stop
-        control_io.set('p_brine_level', 0)
         control_io.set('p_brine_level_speed', 0)
     else:
         # refill
-        control_io.set('p_brine_level', 0)
         control_io.set('p_brine_level_speed', 10)
 
     return True
@@ -194,10 +200,18 @@ STATES = {
         "expected": {
             "p1": 1,
             "p1_direction": 0,
+            "p2": 0,
+            "p2_direction": 0,
+
+            # "p_brine_level": 0, # controlled.
+            "air_out": 0,
+            "air_in": 0,
+
             "v1": 0,
             "v1-1": 0,
             "v2": 0,
             "v2-1": 0,
+
             "PSU": 0,   # ON
         },
         "interval": 2,
@@ -213,8 +227,22 @@ STATES = {
     "StartCleaning": {
         "expected": {
             "p1": 0,
+            "p1_direction": 0,
+            "p2": 0,
+            "p2_direction": 0,
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
             "v1": 0,
             "v1-1": 0,
+            "v2": 0,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
+
         },
         "interval": 5,
         "actions": [
@@ -225,36 +253,266 @@ STATES = {
     },
 
     "SaveTheBrine": {
-        "expected": {},
+        "expected": {
+
+            "p1": 1,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 0,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 0,
+            "v1-1": 0,
+            "v2": 0,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
+
+        },
         "state": {
 
         },
-        "interval": 5,
+        "interval": 122,
         "actions": [
             interval_check,
         ],
+        "next": "PrepareFlushWithAirBrine",
+    },
+
+    "PrepareFlushWithAirBrine": {
+        "expected": {
+            # to make this state unique.
+            "two": 1,
+            "three": 0,
+            "four": 0,
+
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 1,
+            "v1-1": 1,
+            "v2": 1,
+            "v2-1": 1,
+
+            "PSU": 6,   # OFF
+        },
+        "interval": 10,
+        "actions": [
+            interval_check,
+        ],
+
         "next": "FlushWithAirBrine",
     },
 
     "FlushWithAirBrine": {
-        "expected": {},
-        "state": {
+        "expected": {
+            # to make this state unique.
+            "two": 0,
+            "three": 1,
+            "four": 0,
 
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 1,
+            "air_in": 1,
+
+            "v1": 1,
+            "v1-1": 1,
+            "v2": 1,
+            "v2-1": 1,
+
+            "PSU": 6,   # OFF
         },
-        "interval": 5,
+
+        "interval": 120,
         "actions": [
             interval_check,
         ],
 
-        "next": "LoadTheSoap",
+        "next": "ConnectTheSoap",
     },
 
-    "LoadTheSoap": {
-        "expected": {},
-        "state": {
+    "ConnectTheSoap": {
+        "expected": {
+            # to make this state unique.
+            "two": 0,
+            "three": 0,
+            "four": 0,
+            "state_indicator": 1,
 
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 1,
+            "v1-1": 0,
+            "v2": 1,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
         },
-        "interval": 5,
+        "interval": 10,
+        "actions": [
+            interval_check,
+        ],
+
+        "next": "PumpTheSoap",
+    },
+
+    "PumpTheSoap": {
+        "expected": {
+            # to make this state unique.
+            "two": 0,
+            "three": 0,
+            "four": 0,
+            "state_indicator": 2,
+
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 1,
+            "p2_direction": 0,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 1,
+            "v1-1": 0,
+            "v2": 1,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
+        },
+        "interval": 300,
+        "actions": [
+            interval_check,
+        ],
+
+        "next": "StopTheSoap",
+    },
+
+    "StopTheSoap": {
+        "expected": {
+            # to make this state unique.
+            "two": 0,
+            "three": 0,
+            "four": 1,
+            "state_indicator": 2.2,
+
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 0,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 1,
+            "v1-1": 0,
+            "v2": 1,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
+        },
+        "interval": 2,
+        "actions": [
+            interval_check,
+        ],
+
+        "next": "SaveTheSoap",
+    },
+
+    "SaveTheSoap": {
+        "expected": {
+            # to make this state unique.
+            "two": 0,
+            "three": 1,
+            "four": 1,
+            "state_indicator": 2.3,
+
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 1,
+            "p2_direction": 1,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 1,
+            "v1-1": 0,
+            "v2": 1,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
+        },
+        "interval": 120,
+        "actions": [
+            interval_check,
+        ],
+
+        "next": "PrepareFlushWithAirSoap",
+    },
+
+    "PrepareFlushWithAirSoap": {
+        "expected": {
+            # to make this state unique.
+            "two": 1,
+            "three": 0,
+            "four": 1,
+            "state_indicator": 2.5,
+
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 1,
+            "v1-1": 1,
+            "v2": 1,
+            "v2-1": 1,
+
+            "PSU": 6,   # OFF
+        },
+        "interval": 10,
         "actions": [
             interval_check,
         ],
@@ -264,11 +522,66 @@ STATES = {
 
 
     "FlushWithAirSoap": {
-        "expected": {},
-        "state": {
+        "expected": {
+            # to make this state unique.
+            "two": 1,
+            "three": 0,
+            "four": 1,
+            "state_indicator": 2.6,
 
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 1,
+            "air_in": 1,
+
+            "v1": 1,
+            "v1-1": 1,
+            "v2": 1,
+            "v2-1": 1,
+
+            "PSU": 6,   # OFF
         },
-        "interval": 5,
+
+        "interval": 120,
+        "actions": [
+            interval_check,
+        ],
+
+        "next": "ConnectTheBrine",
+    },
+
+    "ConnectTheBrine": {
+        "expected": {
+            # to make this state unique.
+            "two": 0,
+            "three": 1,
+            "four": 1,
+            "state_indicator": 3,
+
+            "p1": 0,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 0,
+            "v1-1": 0,
+            "v2": 0,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
+        },
+        "interval": 10,
         "actions": [
             interval_check,
         ],
@@ -276,12 +589,34 @@ STATES = {
         "next": "LoadTheBrine",
     },
 
-    "LoadTheBrine": {
-        "expected": {},
-        "state": {
 
+    "LoadTheBrine": {
+        "expected": {
+            # to make this state unique.
+            "two": 1,
+            "three": 0,
+            "four": 1,
+            "state_indicator": 3.3,
+
+            "p1": 1,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 0,
+            "v1-1": 0,
+            "v2": 0,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
         },
-        "interval": 5,
+
+        "interval": 120,
         "actions": [
             interval_check,
         ],
@@ -290,14 +625,38 @@ STATES = {
     },
 
     "GoToHappyFlow": {
-        "expected": {},
-        "state": {
+        "expected": {
+            # to make this state unique.
+            "two": 1,
+            "three": 1,
+            "four": 1,
+            "state_indicator": 3.4,
 
+            "p1": 1,
+            "p1_direction": 1,
+            "p2": 0,
+            "p2_direction": 1,
+            # level pump must be off.
+            "p_brine_level": 0,
+
+            "air_out": 0,
+            "air_in": 0,
+
+            "v1": 0,
+            "v1-1": 0,
+            "v2": 0,
+            "v2-1": 0,
+
+            "PSU": 6,   # OFF
         },
-        "interval": 5,
+
+        "interval": 120,
         "actions": [
             interval_check,
+            check_brine_level,
+            check_brine_level_safe,
         ],
+
         "next": "HappyFlow",
     }
 }

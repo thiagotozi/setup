@@ -292,7 +292,7 @@
         "value": 0
     },
     {
-        "alias": "al_P2_Direction",
+        "alias": "al_p2_direction",
         "circuit": "3_02",
         "dev": "relay",
         "glob_dev_id": 1,
@@ -398,7 +398,7 @@
         "value": 0
     },
     {
-        "alias": "al_AIR_IN",
+        "alias": "al_air_in",
         "circuit": "2_05",
         "dev": "relay",
         "glob_dev_id": 1,
@@ -411,7 +411,7 @@
         "value": 0
     },
     {
-        "alias": "al_AIR_OUT",
+        "alias": "al_air_out",
         "circuit": "2_04",
         "dev": "relay",
         "glob_dev_id": 1,
@@ -475,7 +475,7 @@
         "value": 0
     },
     {
-        "alias": "al_TEST_VOLTAGE_INPUT",
+        "alias": "al_state_indicator",
         "circuit": "3_04",
         "dev": "ai",
         "glob_dev_id": 1,
