@@ -8,6 +8,8 @@ We are using a unipi plc with an evok interface to program the cleaning
 procedure.
 
 Python 2.7 compatibility.
+
+Sams first edit!
 """
 
 import sys
@@ -35,6 +37,9 @@ def set_lamps(one, two, three, four):
     # control_io.set('three', three)
     # control_io.set('four', four)
 
+class InvalidStateException(Exception):
+    pass
+
 
 def run_state_machine(last_state):
     """Run a single iteration of statemachine.
@@ -46,7 +51,6 @@ def run_state_machine(last_state):
     """
     washing_state.CURRENT_PLC_STATE = control_io.load_current_plc_state()
     state = state_machine.match_current_state()
-    error_count = 0
 
     # log.info('CURRENT %s', state)
 
@@ -60,18 +64,14 @@ def run_state_machine(last_state):
 
     if state:
         state_machine.action()
-        error_count += 0
     else:
-        error_count += 1
         msg = (
             "UNIPI is in a unknown STATE. please manualy put it",
             "in the desired state using the /index.html page"
             "retying.. %s" % error_count
         )
         log.error(msg)
-        print(msg)
-        if error_count > 5:
-            sys.exit(1)
+        raise InvalidStateException(msg)
 
     return state
 
@@ -86,13 +86,23 @@ def run_forever():
 
     LOOP_PERIOD = washing_state.settings['LOOP_PERIOD_SECONDS']
 
+    error_count = 0
+
     while True:
-        new_state = run_state_machine(last_state)
+        try:
+            new_state = run_state_machine(last_state)
+            error_count = 0
+        except InvalidStateException:
+            error_count += 1
         last_state = new_state
         # waiting time before continuing.
         time.sleep(LOOP_PERIOD)
         leds = [1 - x for x in leds]  # noqa
         set_lamps(*leds)
+
+        if error_count > 5:
+            log.error('UNIPI is in invalid state!!')
+            sys.exit(1)
 
 
 if __name__ == '__main__':
