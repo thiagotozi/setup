@@ -1,0 +1,10 @@
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+  - export PYTHON_PATH=.
+  - pip install -r requirements.txt
+  - pytest
+
