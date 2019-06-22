@@ -29,7 +29,7 @@ def least_square_slope(v_hist):
 
     to avoid numpy dependency and general geek interest
     """
-    N = len(v_hist)
+    N = len(v_hist)   # noqa
     time = range(1, N+1)
     sumtime = sum(time)
 
