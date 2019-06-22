@@ -17,5 +17,5 @@ brine_levels = []
 
 
 def reset():
-    voltage_history.clear()
-    brine_levels.clear()
+    voltage_history = []
+    brine_levels = []

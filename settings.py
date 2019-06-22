@@ -15,7 +15,7 @@ if parameters['TESTING']:
     parameters['LOOP_PERIOD_SECONDS'] = 0.1
     parameters['WAIT_TIME_SLOW_VALVE'] = 0.01
 
-DEMO = True
+DEMO = False
 
 
 def set_demo():

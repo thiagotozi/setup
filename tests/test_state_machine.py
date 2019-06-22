@@ -5,7 +5,6 @@ import os
 import json
 import unittest
 import random
-from unittest import mock
 #
 import dishwasher
 
@@ -17,6 +16,11 @@ from state_machine import voltage_check
 from settings import parameters
 import washing_state
 
+import sys
+if sys.version_info >= (3, 3):
+    from unittest import mock
+else:
+    import mock
 
 parameters['TESTING'] = True
 
