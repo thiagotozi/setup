@@ -19,6 +19,8 @@ import time
 import logging
 import washing_state
 
+from settings import parameters
+
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 # logging.basicConfig(level=logging.DEBUG)
@@ -68,7 +70,7 @@ def run_state_machine(last_state):
         msg = (
             "UNIPI is in a unknown STATE. please manualy put it",
             "in the desired state using the /index.html page"
-            "retying.. %s" % error_count
+            "retying. "
         )
         log.error(msg)
         raise InvalidStateException(msg)
@@ -84,7 +86,7 @@ def run_forever():
     leds = [0, 0, 0, 0]
     last_state = None
 
-    LOOP_PERIOD = washing_state.settings['LOOP_PERIOD_SECONDS']
+    loop_period = parameters['LOOP_PERIOD_SECONDS']
 
     error_count = 0
 
@@ -96,7 +98,7 @@ def run_forever():
             error_count += 1
         last_state = new_state
         # waiting time before continuing.
-        time.sleep(LOOP_PERIOD)
+        time.sleep(loop_period)
         leds = [1 - x for x in leds]  # noqa
         set_lamps(*leds)
 

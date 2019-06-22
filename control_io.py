@@ -9,7 +9,6 @@ from washing_state import UNIPI_IP
 
 log = logging.getLogger(__name__)
 
-
 def load_current_plc_state():
     """
     Load the current state of the PLC.
