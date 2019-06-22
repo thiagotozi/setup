@@ -14,11 +14,11 @@ import state_machine
 from state_machine import least_square_slope
 from state_machine import voltage_check
 
-from washing_state import settings
+from settings import parameters
 import washing_state
 
 
-settings['TESTING'] = True
+parameters['TESTING'] = True
 
 default_io_ok = {
     "result": {
@@ -165,9 +165,9 @@ class TestWasMachine(unittest.TestCase):
     @mock.patch("requests.post")
     def test_voltage_trigger(self, post_mock, get_mock):
 
-        test_loops = settings['voltage_history'] + 1
+        test_loops = parameters['voltage_history'] + 1
 
-        v_slope = 4.8 * settings['TRIGGER_SLOPE']
+        v_slope = 4.8 * parameters['TRIGGER_SLOPE']
         # class variable.
 
         unipi = GetResponse()
@@ -189,7 +189,7 @@ class TestWasMachine(unittest.TestCase):
 
         v_hist = washing_state.voltage_history
         self.assertTrue(
-            least_square_slope(v_hist) > settings['TRIGGER_SLOPE']
+            least_square_slope(v_hist) > parameters['TRIGGER_SLOPE']
         )
 
         self.assertTrue(voltage_check())
@@ -200,7 +200,7 @@ class TestWasMachine(unittest.TestCase):
     @mock.patch("requests.get")
     @mock.patch("requests.post")
     def test_no_trigger(self, post_mock, get_mock):
-        test_loops = settings['voltage_history'] + 1
+        test_loops = parameters['voltage_history'] + 1
 
         assert len(washing_state.voltage_history) == 1
         # should be to low to ever trigger
@@ -225,7 +225,7 @@ class TestWasMachine(unittest.TestCase):
         v_hist = washing_state.voltage_history
 
         # nothing should be triggered.
-        assert least_square_slope(v_hist) < settings['TRIGGER_SLOPE']
+        assert least_square_slope(v_hist) < parameters['TRIGGER_SLOPE']
         self.assertFalse(voltage_check())
         self.assertEqual(last_state, 'HappyFlow')
 

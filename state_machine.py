@@ -5,7 +5,7 @@ import washing_state
 import control_io
 import logging
 # import time
-from washing_state import settings
+from settings import parameters
 
 log = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ def voltage_check():
     voltage_history = washing_state.voltage_history
     voltage_history.append(v)
 
-    hist_seconds = settings['voltage_history']
+    hist_seconds = parameters['voltage_history']
 
     if len(voltage_history) < hist_seconds:
         # not enough data to do something.
@@ -67,13 +67,13 @@ def voltage_check():
 
     avg_voltage = sum(voltage_history) / len(voltage_history)
 
-    min_voltage = settings['SAFE_VOLTAGE_RANGE'][0]
+    min_voltage = parameters['SAFE_VOLTAGE_RANGE'][0]
     if avg_voltage < min_voltage:
         # n0 action needed.
         # start cleaning.
         return False
 
-    max_voltage = settings['SAFE_VOLTAGE_RANGE'][1]
+    max_voltage = parameters['SAFE_VOLTAGE_RANGE'][1]
     if avg_voltage > max_voltage:
         # way to high voltage.
         # clean the brine!
@@ -100,7 +100,7 @@ def interval_check():
 
     wait_interval = STATES[state]['interval']
 
-    if washing_state.settings['TESTING'] or washing_state.DEMO:
+    if parameters['TESTING'] or washing_state.DEMO:
         wait_interval = wait_interval / 10
 
     if wait_interval > interval:
@@ -110,7 +110,7 @@ def interval_check():
 
 
 def check_brine_level_safe():
-    if settings['TESTING']:
+    if parameters['TESTING']:
         control_io.set('brine_level', 1)
     return control_io.get('brine_level')
 

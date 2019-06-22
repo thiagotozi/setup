@@ -19,27 +19,3 @@ brine_levels = []
 def reset():
     voltage_history.clear()
     brine_levels.clear()
-
-
-settings = {
-    'voltage_history': 300,
-    'TESTING': False,
-    'LOOP_PERIOD_SECONDS': 1,
-    'TRIGGER_SLOPE': 0.0003,
-    # Safe voltage range for stack.
-    'SAFE_VOLTAGE_RANGE': [6, 9],
-    'WAIT_TIME_SLOW_VALVE': 10
-}
-
-
-if settings['TESTING']:
-    # test settings.
-    settings['LOOP_PERIOD_SECONDS'] = 0.1
-    settings['WAIT_TIME_SLOW_VALVE'] = 0.01
-
-DEMO = True
-
-if DEMO:
-    # test settings.
-    settings['WAIT_TIME_SLOW_VALVE'] = 1.00
-    settings['voltage_history'] = 15
