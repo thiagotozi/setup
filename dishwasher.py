@@ -19,14 +19,18 @@ import washing_state
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(level=logging.INFO)
+# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(
+        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        datefmt='%m-%d %H:%M:%S',
+        level=logging.INFO
+)
+
 log = logging.getLogger(__name__)
 
 
 def set_lamps(one, two, three, four):
-    set_io('one', one)
-
+    control_io.set('one', one)
     # control_io.set('two', two)
     # control_io.set('three', three)
     # control_io.set('four', four)
@@ -42,6 +46,7 @@ def run_state_machine(last_state):
     """
     washing_state.CURRENT_PLC_STATE = control_io.load_current_plc_state()
     state = state_machine.match_current_state()
+    error_count = 0
 
     # log.info('CURRENT %s', state)
 
@@ -55,14 +60,18 @@ def run_state_machine(last_state):
 
     if state:
         state_machine.action()
+        error_count += 0
     else:
+        error_count += 1
         msg = (
             "UNIPI is in a unknown STATE. please manualy put it",
             "in the desired state using the /index.html page"
+            "retying.. %s" % error_count
         )
         log.error(msg)
         print(msg)
-        sys.exit(1)
+        if error_count > 5:
+            sys.exit(1)
 
     return state
 

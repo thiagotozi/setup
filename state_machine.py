@@ -100,7 +100,7 @@ def interval_check():
 
     wait_interval = STATES[state]['interval']
 
-    if washing_state.settings['TESTING']:
+    if washing_state.settings['TESTING'] or washing_state.DEMO:
         wait_interval = wait_interval / 10
 
     if wait_interval > interval:
@@ -424,7 +424,7 @@ STATES = {
             "two": 0,
             "three": 0,
             "four": 1,
-            "state_indicator": 2.2,
+            "state_indicator": 2,
 
             "p1": 0,
             "p1_direction": 1,
@@ -458,7 +458,7 @@ STATES = {
             "two": 0,
             "three": 1,
             "four": 1,
-            "state_indicator": 2.3,
+            "state_indicator": 2,
 
             "p1": 0,
             "p1_direction": 1,
@@ -490,9 +490,9 @@ STATES = {
         "expected": {
             # to make this state unique.
             "two": 1,
-            "three": 0,
-            "four": 1,
-            "state_indicator": 2.5,
+            "three": 1,
+            "four": 0,
+            "state_indicator": 2,
 
             "p1": 0,
             "p1_direction": 1,
@@ -527,7 +527,7 @@ STATES = {
             "two": 1,
             "three": 0,
             "four": 1,
-            "state_indicator": 2.6,
+            "state_indicator": 2,
 
             "p1": 0,
             "p1_direction": 1,
@@ -596,7 +596,7 @@ STATES = {
             "two": 1,
             "three": 0,
             "four": 1,
-            "state_indicator": 3.3,
+            "state_indicator": 4,
 
             "p1": 1,
             "p1_direction": 1,
@@ -630,14 +630,12 @@ STATES = {
             "two": 1,
             "three": 1,
             "four": 1,
-            "state_indicator": 3.4,
+            "state_indicator": 5,
 
             "p1": 1,
             "p1_direction": 1,
             "p2": 0,
             "p2_direction": 1,
-            # level pump must be off.
-            "p_brine_level": 0,
 
             "air_out": 0,
             "air_in": 0,

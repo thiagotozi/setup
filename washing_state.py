@@ -37,4 +37,9 @@ if settings['TESTING']:
     settings['LOOP_PERIOD_SECONDS'] = 0.1
     settings['WAIT_TIME_SLOW_VALVE'] = 0.01
 
-    # settings['voltage_history'] = 0.1
+DEMO = True
+
+if DEMO:
+    # test settings.
+    settings['WAIT_TIME_SLOW_VALVE'] = 1.00
+    settings['voltage_history'] = 15

@@ -77,7 +77,7 @@ def _set_value(io, value):
 
 
 def _compare_value(io, value):
-    return value == io['value']
+    return round(value, 0) == round(io['value'], 0)
 
 
 def match(alias, value):
