@@ -3,9 +3,9 @@ parameters = {
     'voltage_history': 300,
     'TESTING': False,
     'LOOP_PERIOD_SECONDS': 1,
-    'TRIGGER_SLOPE': 0.0003,
+    'TRIGGER_SLOPE': 0.003,
     # Safe voltage range for stack.
-    'SAFE_VOLTAGE_RANGE': [6, 9],
+    'SAFE_VOLTAGE_RANGE': [6, 15],
     'WAIT_TIME_SLOW_VALVE': 10
 }
 
